@@ -12,6 +12,7 @@ import Player from '../pages/Player';
 import Playlist from '../pages/Playlist';
 import { AudioProvider } from "../pages/Inicial";
 import Inicial from '../pages/Inicial';
+import { useAuth } from '../hook/auth';
 import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 
 const Drawer = createDrawerNavigator()
@@ -60,20 +61,29 @@ function InicialFunction () {
 }
 
 
-const Stack = createNativeStackNavigator()
-
-export function Routes(){
+export default function HomeRoute(){
     return(
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
+            <Stack.Navigator initialRouteName='Home'>
                 <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="MenuLi" component={MenuLi} options={{
                 }} />
                 <Stack.Screen name="CriarConta" component={CriarConta} />
             </Stack.Navigator>
+    )
+}
+
+
+const Stack = createNativeStackNavigator()
+
+export function Routes(){
+    const {access_token} = useAuth();
+    return(
+        <NavigationContainer>
+            {access_token ? <Inicial/> : <HomeRoute />}
         </NavigationContainer>
     )
 }
+
 
 
