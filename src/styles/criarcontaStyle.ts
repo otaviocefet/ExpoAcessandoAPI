@@ -10,8 +10,10 @@ export const criarcontaStyle = StyleSheet.create({
         
     },
     view: {
+        marginTop: 160,
         width: "80%",
-        height: "20%"
+        height: "54%",
+        backgroundColor: 'white',
         
     },
     cardButton: {

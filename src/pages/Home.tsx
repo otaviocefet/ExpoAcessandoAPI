@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/core';
 import { homeStyle} from '../styles/home.style'
 import { ImageBackground, View, Pressable, Text} from 'react-native';
 
+
 export function Home() {
     const navigation = useNavigation();
     return (

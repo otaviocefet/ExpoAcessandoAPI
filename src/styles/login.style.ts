@@ -7,15 +7,13 @@ export const loginStyle = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
+        
     },
     view: {
+        marginTop: 80,
         width: "80%",
-        height: "20%",
-    },
-    cardButton: {
-        margin:2,
-        marginLeft: 0,
-        marginRight: 0
+        height: "45%",
+        backgroundColor: 'white',
     },
     container: {
         flex: 1,
