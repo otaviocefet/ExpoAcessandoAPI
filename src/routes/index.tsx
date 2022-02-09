@@ -20,7 +20,9 @@ const Drawer = createDrawerNavigator()
 
 export function MenuLi() {
     return (
-        <Drawer.Navigator>
+        <Drawer.Navigator  screenOptions={{
+            headerShown: false
+          }}>
             <Drawer.Screen name="Menu" component={InicialFunction} />
             <Drawer.Screen name="Sobre" component={Sobre} />
             <Drawer.Screen name="Ajuda" component={Ajuda} />
@@ -63,7 +65,9 @@ function InicialFunction () {
 
 export default function HomeRoute(){
     return(
-            <Stack.Navigator initialRouteName='Home'>
+            <Stack.Navigator initialRouteName='Home'  screenOptions={{
+                headerShown: false
+              }} >
                 <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="MenuLi" component={MenuLi} options={{
