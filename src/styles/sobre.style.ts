@@ -11,7 +11,7 @@ export const SobreStyle = StyleSheet.create({
     view: {
         backgroundColor: 'white',
         width: "90%",
-        height: "82%",
+        height: "45%",
         padding: 20,
         paddingTop:0,
         marginTop: "50%",
