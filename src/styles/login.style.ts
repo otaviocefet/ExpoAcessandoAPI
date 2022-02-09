@@ -10,15 +10,19 @@ export const loginStyle = StyleSheet.create({
         
     },
     view: {
-        marginTop: 80,
+        marginTop: 200,
         width: "80%",
-        height: "45%",
+        height: "48%",
         backgroundColor: 'white',
+        borderColor: "black",
+        alignItems: "center",
+        borderWidth: 1,
     },
     container: {
         flex: 1,
     },
     image: {
+        marginTop:30,
         flex: 1,
         justifyContent: "center"
     },

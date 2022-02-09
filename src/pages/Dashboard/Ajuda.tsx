@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/core';
-import { AjudaStyle} from '../styles/ajuda.style'
+import { AjudaStyle} from '../../styles/ajuda.style'
 import { SafeAreaView, View, Text, ImageBackground} from 'react-native';
 import { Card, TextInput, Button} from 'react-native-paper';
 import {Formik} from 'formik';
@@ -11,13 +11,11 @@ const schema = Yup.object().shape({
 });
 
 
-
-
 export function Ajuda() {
     const navigation = useNavigation();
     return (
         <View style={AjudaStyle.container}>
-            <ImageBackground  source={require('../../img/Login.png')} style={AjudaStyle.image}>
+            <ImageBackground  source={require('../../../img/Login.png')} style={AjudaStyle.image}>
             <SafeAreaView style={AjudaStyle.content}>
                     <View style={AjudaStyle.view}>
                         <Card>

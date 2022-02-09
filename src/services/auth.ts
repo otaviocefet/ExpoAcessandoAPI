@@ -1,5 +1,5 @@
-import api from "../../api";
-import { IRegister, IAuthenticate, IUser } from "../../../interfaces/User.interface"
+import api from "../services/api";
+import { IRegister, IAuthenticate, IUser } from "../interfaces/User.interface"
 
 class UserData {
   register(data: IRegister) {
@@ -7,6 +7,9 @@ class UserData {
   }
   login(data: IAuthenticate) {
     return api.post<IUser>('/login', data);
+  }
+  logout() {
+    return api.get('/logout')
   }
 }
 

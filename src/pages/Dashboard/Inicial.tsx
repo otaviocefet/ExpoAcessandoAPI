@@ -1,7 +1,7 @@
 import React, {Component, createContext} from 'react'
 import {useEffect} from 'react'
 import {View, Text, Alert} from 'react-native';
-import { inicialStyle } from '../styles/inicial.style';
+import { inicialStyle } from '../../styles/inicial.style';
 import * as MediaLibrary from 'expo-media-library';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -99,7 +99,6 @@ export class Inicial extends Component {
         return(
                 <ScrollView>
                     {this.context.audioFiles.map(item => <Text key={item.id}>{item.filename}</Text>)}
-                    <Text style={{padding: 10, borderBottomColor: 'black', borderBottomWidth: 2 }}>Lista de Músicas</Text>
                 </ScrollView>
         );
     }

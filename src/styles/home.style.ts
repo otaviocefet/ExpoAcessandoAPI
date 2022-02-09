@@ -27,6 +27,7 @@ export const homeStyle = StyleSheet.create({
 
     image: {
         flex: 1,
+        marginTop:30,
         justifyContent: "center"
     },
 

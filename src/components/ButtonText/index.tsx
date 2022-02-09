@@ -13,8 +13,8 @@ export default function ButtonText({ title, onPress, ...rest }: ButtonProps) {
 const styles = StyleSheet.create({
   text: {
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: "bold",
-    padding: 10,
+    padding: 25,
   },
 });

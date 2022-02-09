@@ -1,7 +1,7 @@
 import React from "react";
-import {Routes} from "./src/routes";
+import Routes from "./src/routes";
 import { Provider as PaperProvider} from 'react-native-paper';
-import { AuthProvider } from "./src/hook/auth";
+import { AuthProvider } from "./src/contexts/auth";
 
 
 const App = () => {

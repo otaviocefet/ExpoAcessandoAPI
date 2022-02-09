@@ -1,31 +1,37 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/core';
-import { criarcontaStyle} from '../styles/criarcontaStyle';
-import { SafeAreaView, ImageBackground} from 'react-native';
+import { loginStyle} from '../../styles/login.style';
+import { ImageBackground} from 'react-native';
 import { AxiosError } from "axios";
 import { useState, useEffect } from "react";
 import {  View,  Text,  KeyboardAvoidingView,  TextInput,  StyleSheet,  Alert,} from "react-native";
-import { Button, ButtonText } from "../components";
-import { useAuth } from "../hook/auth";
-import { IRegister, IUser } from "../interfaces/User.interface";
-import { LoginTypes } from "../types/ScreenStack.types";
-export function CriarConta() {
-    const navigation = useNavigation();
-    const login = () => navigation.navigate('MenuLi');
+import { Button, ButtonText } from "../../components";
+import Loading from '../../components/Loading';
+import { useAuth } from "../../contexts/auth";
+import { IAuthenticate, IUser } from "../../interfaces/User.interface";
+import { LoginTypes } from "../../types/ScreenStack.types";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-  const { register } = useAuth();
-  const [data, setData] = useState<IRegister>();
+export default function Login({ navigation }: LoginTypes) {
+  const { signIn } = useAuth();
+  const [data, setData] = useState<IAuthenticate>();
   const [isLoading, setIsLoading] = useState(true);
-  function handleChange(item: IRegister) {
+
+
+  function handleChange(item: IAuthenticate) {
     setData({ ...data, ...item });
   }
-  async function handleRegister() {
+  function handleCadastrar() {
+    navigation.navigate("CriarConta");
+  }
+  async function handleSignIn() {
     try {
       setIsLoading(true);
-      if (data?.email && data.name && data.password) {
-        await register(data);
+      if (data?.email && data.password) {
+        await signIn(data);
       } else {
         Alert.alert("Preencha todos os campos!!!");
+        setIsLoading(false);
       }
     } catch (error) {
       const err = error as AxiosError;
@@ -37,38 +43,35 @@ export function CriarConta() {
         }
       }
       Alert.alert(`${data.message} ${message}`);
-    } finally {
       setIsLoading(false);
     }
   }
-  
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
+
     return (
-        <View style={criarcontaStyle.container}>
-            <ImageBackground  source={require('../../img/Login.png')} style={criarcontaStyle.image}>
-                <SafeAreaView style={criarcontaStyle.content}>
-                    <View style={criarcontaStyle.view}>
+      <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <View style={loginStyle.container}>
+            <ImageBackground  source={require('../../../img/Login.png')} style={loginStyle.image}>
+                <SafeAreaView style={loginStyle.content}>
+                    <View style={loginStyle.view}>
                         <KeyboardAvoidingView>
-                            <Text style={styles.title}>Criar Conta</Text>
+                            <Text style={styles.title}>Login</Text>
                             <View style={styles.formRow}>
-                            <Text style={styles.label}>Nome:</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Nome"
-                                onChangeText={(i) => handleChange({ name: i })}
-                            ></TextInput>
-                            </View>
-                            <View style={styles.formRow}>
-                            <Text style={styles.label}>E-mail: </Text>
-                            <TextInput
-                                style={styles.input}
-                                placeholder="E-mail"
+                                placeholder="Insira seu email"
                                 keyboardType="email-address"
                                 autoCapitalize="none"
                                 onChangeText={(i) => handleChange({ email: i })}
                             ></TextInput>
                             </View>
                             <View style={styles.formRow}>
-                            <Text style={styles.label}>Senha: </Text>
                             <TextInput
                                 style={styles.input}
                                 placeholder="Senha"
@@ -76,28 +79,40 @@ export function CriarConta() {
                                 onChangeText={(i) => handleChange({ password: i })}
                             ></TextInput>
                             </View>
-                            <Button title="Salvar" onPress={() => navigation.navigate('MenuLi')} />
-                            <ButtonText title="Voltar"  onPress={() => navigation.navigate('Login')} />
+                            <Button style={styles.autenticar} title="Autenticar" onPress={handleSignIn} />
+                            
                         </KeyboardAvoidingView>
+                        <ButtonText style={styles.criarConta} title="Não tem uma conta? Clique aqui para criar"  onPress={handleCadastrar} />
                     </View>
                 </SafeAreaView>
             </ImageBackground>
         </View>
+      )}
+      </>
     );
+
+    
 };
-
-export default CriarConta;
-
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "white",
+      backgroundColor: 'white',
       alignItems: "center",
       justifyContent: "center",
     },
+    autenticar: {
+      backgroundColor: "#2079FF",
+      borderRadius: 47,
+      marginTop: 30,
+      height: 50,
+     
+    },
+    criarConta:{
+      fontSize: 2,
+    },
     title: {
-      fontSize: 36,
-      color: "black",
+      fontSize: 45,
+      color: "#003777",
       fontWeight: "500",
       marginBottom: 20,
       textAlign: "center",
@@ -108,15 +123,16 @@ const styles = StyleSheet.create({
     },
     label: {
       fontSize: 18,
-      color: "black",
+      color: 'black',
       padding: 5,
     },
     input: {
-      borderBottomWidth: 1,
-      fontSize: 18,
-      padding: 5,
-      width: "50%",
-      marginLeft: 5,
-      marginBottom: 5,
+      margin: 1,
+      width:250,
+      borderWidth: 1,
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingLeft: 7,
+      
     },
   });

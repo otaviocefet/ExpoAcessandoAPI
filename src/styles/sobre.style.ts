@@ -10,11 +10,12 @@ export const SobreStyle = StyleSheet.create({
     },
     view: {
         backgroundColor: 'white',
-        width: "80%",
-        height: "35%",
+        width: "90%",
+        height: "82%",
         padding: 20,
         paddingTop:0,
-        marginTop: 100,
+        marginTop: "50%",
+        
     },
     container: {
         flex: 1,
@@ -24,11 +25,15 @@ export const SobreStyle = StyleSheet.create({
         justifyContent: "center"
     },
     titulo: {
+        marginTop: 20,
         fontSize: 30,
         fontStyle: 'italic',
         fontWeight: 'bold',
-    },
+        textDecorationLine: 'underline',
+        textAlign: "center",
+        color: 'rgb(80,75,152)',
+    }, 
     texto: {
-        textAlign: "justify",
+        fontSize: 15,
     },
 })
