@@ -4,8 +4,6 @@ import {View, Text, Alert} from 'react-native';
 import { inicialStyle } from '../styles/inicial.style';
 import * as MediaLibrary from 'expo-media-library';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useAuth } from '../hook/auth';
-
 
 
 export const AudioContext = createContext()
@@ -98,7 +96,6 @@ export class Inicial extends Component {
     static contextType = AudioContext
 
     render(){
-        const { user } = useAuth();
         return(
                 <ScrollView>
                     {this.context.audioFiles.map(item => <Text key={item.id}>{item.filename}</Text>)}
@@ -110,10 +107,3 @@ export class Inicial extends Component {
 
 
 export default Inicial;
-
-
-
-
-
-
-

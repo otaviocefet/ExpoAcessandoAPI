@@ -25,6 +25,7 @@ export function Login() {
         try {
           if (data?.email && data.password) {
             await signIn(data);
+            navigation.navigate('MenuLi');
           } else {
             Alert.alert("Preencha todos os campos!!!");
           }
@@ -70,7 +71,7 @@ export function Login() {
                                 onChangeText={(i) => handleChange({ password: i })}
                             ></TextInput>
                             </View>
-                            <Button title="Login" onPress={handleSignIn} />
+                            <Button title="Login" onPress={() => navigation.navigate('MenuLi')} />
                             <ButtonText title="Cadastre-se"  onPress={() => navigation.navigate('CriarConta')} />
                         </KeyboardAvoidingView>
                     </View>
@@ -78,6 +79,8 @@ export function Login() {
             </ImageBackground>
         </View>
     );
+
+    
 };
 const styles = StyleSheet.create({
     container: {

@@ -42,7 +42,6 @@ export function CriarConta() {
     }
   }
   
-
     return (
         <View style={criarcontaStyle.container}>
             <ImageBackground  source={require('../../img/Login.png')} style={criarcontaStyle.image}>
@@ -77,7 +76,7 @@ export function CriarConta() {
                                 onChangeText={(i) => handleChange({ password: i })}
                             ></TextInput>
                             </View>
-                            <Button title="Salvar" onPress={handleRegister} />
+                            <Button title="Salvar" onPress={() => navigation.navigate('MenuLi')} />
                             <ButtonText title="Voltar"  onPress={() => navigation.navigate('Login')} />
                         </KeyboardAvoidingView>
                     </View>
